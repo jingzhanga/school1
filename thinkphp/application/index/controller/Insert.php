@@ -22,7 +22,8 @@ class Insert extends Controller
     	 	if(empty($res)){
     	 		Db::execute("insert grade (Project,Beidafen_ID,Dafen_ID,Grade) values ('$var[0]','$var[1]',$dafen,$value)");
     	 	}else{
-    	 		Db::execute("")
+    	 		Db::execute("update grade set grade.Grade=$value where grade.Project='$var[0]' and grade.Beidafen_ID='$var[1]' and grade.Dafen_ID=$dafen");
+    	 		$this->redirect(url('Index/index'));
     	 	}
     	 }
     }
