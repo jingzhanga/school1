@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>登录系统</title> 
+<style>
+body,div,dl,dt,p,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,blockquote,th,td { 
+padding:0; 
+margin:0 auto; font-family:"微软雅黑"}
+.wapbg{ background:url(__STATIC_PATH__/image/tpbg.gif); height:446px;}
+.wap{ margin:0 auto; width:955px;}
+.top{ height:150px; padding-left:85px;}
+.middle{ height:296px;background:url(__STATIC_PATH__/image/bgtp.gif) no-repeat; height:296px;position:relative; width:955px;}
+.dl{width:312px;height:230px;position:absolute;right:60px;top:30px}
+.dlti{font-size:24px;color:#333;position:absolute;top:5px;
+}
+.dlmi{ float:left; width:312px; line-height:45px;font-size:17px;color:#333;position:absolute;top:70px;}
+.dlmi input{ float:right; height:28px; width:228px; border:1px solid #DDDDDD;position:absolute;left:77px;}
+.dlj{ color:#666;position:absolute;top:180px;left:77px;width: 113px;}
+.dlau{position:absolute;left:86px;top:171px;height:45px;width:95px;font-size:16px;
+}
+.dlau1{position:absolute;left:200px;top:171px;height:45px;width:95px;font-size:16px;
+}
+.end{position:absolute;font-size:15px;color:#999;float:left;width:809px;left: 85px;top: 304px;
+}
+.end span{float:right;}
+.end span a{ color:#999; text-decoration:none;}
+ </style>
+     <script>
+     
+    function tz(){
+      
+        document.login.action="{:url('login/xiugai')}";
+        document.login.submit();
+    }
+    </script>
+</head>
+ 
+<body>
+	
+			
+<form action="{:url('login/dologin')}" method='post' name='login'>
+<div class="wapbg">
+<div class="wap">
+<div class="top"><img style="padding-top:80px" src="/jsxsd/framework/images/index/index_02.png" width="474px" height="61px" /></div>
+<div class="middle">
+<div class="dl"><div class="dlti">用户登录</div>
+<div class="dlmi"><p>用户名:</p><input style="position:absolute; top:7px;" name="account"　id="xh" type="text" value="" /><p>密码:</p><input
+ style="position:absolute; top:54px;" name="pwd" id="pwd"  type="password" value=""/> 
+ 
+ </div>
+ <input onclick="login()" type="submit" value='马上登录' class="dlau" id='btnSubmit' tyle="border:0px;no-repeat;"/>
+ <button onclick="tz()" class="dlau1" id='btnSubmit' tyle="border:0px;no-repeat;" >修改密码</button>
+		
+</div>
+</div></div></div>
+			</form>
+
+			
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>打分系统</title> 
+
+</head>
+ 
+<body>
+
+	<!--<button action="{:url('index/quit')}" class="dlau1" id='btnSubmit' tyle="border:0px;no-repeat;" >tuichu</button>-->
+	<a href="{:url('index/quit')}"">退出</a>
+    <a href="{:url('index/one')}"">教学单位处级干部</a>
+    <a href="{:url('index/two')}"">教学单位领导班子</a>
+    <a href="{:url('index/three')}"">非教学单位处级干部</a>
+    <a href="{:url('index/four')}"">非教学单位领导班子</a>
+
+
+  
+
+<form action="{:url('Insert/index')}" method='post' name='editPwd'>
+ {volist name='jiaoxue' id='ve'}
+<ul>
+	{$i}{$ve.Unit_Name}
+    <li>{$ve.Project}</li>
+    <li><input id="1" type="radio"  name="{$ve.Unit_Name}+{$ve.Project}" value="    1" />1分
+    	<input id="2" type="radio"  name="{$ve.Unit_Name}+{$ve.Project}" value="2"/>2分
+    	<input id="3" type="radio"  name="{$ve.Unit_Name}+{$ve.Project}" value="3"/>3分
+    	<input id="4" type="radio"  name="{$ve.Unit_Name}+{$ve.Project}" value="4"/>4分
+    	<input id="5" type="radio"  name="{$ve.Unit_Name}+{$ve.Project}" value="5"/>5分
+    	<input id="6" type="radio"  name="{$ve.Unit_Name}+{$ve.Project}" value="6"/>6分
+    	<input id="7" type="radio"  name="{$ve.Unit_Name}+{$ve.Project}" value="7"/>7分
+    	<input id="8" type="radio"  name="{$ve.Unit_Name}+{$ve.Project}" value="8"/>8分
+    	<input id="9" type="radio"  name="{$ve.Unit_Name}+{$ve.Project}" value="9"/>9分
+    	<input id="10" type="radio"  name="{$ve.Unit_Name}+{$ve.Project}" value="10"/>10分
+    </li>
+
+</ul>
+
+{/volist}
+<input type="submit" value='确认修改' class='edit-sub'/>
+</form>
+
+</body>
+</html>

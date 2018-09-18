@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>登录系统</title> 
+
+</head>
+ 
+<body>
+	<form action="{:url('login/xiugaiact')}" method='post' name='editPwd'>
+    				<p>
+    					<label for=""><span class='red'>*</span>用户名：</label>
+    					<input name="account" class='input'/>
+    				</p>
+    				<p>
+    					<label for=""><span class='red'>*</span>旧密码：</label>
+    					<input type="password" name='old' class='input'/>
+    				</p>
+    				<p>
+    					<label for=""><span class='red'>*</span>新密码：</label>
+    					<input type="password" name='new' class='input' id='new'/>
+    				</p>
+    				<p>
+    					<label for=""><span class='red'>*</span>确认密码：</label>
+    					<input type="password" name='newed' class='input'/>
+    				</p>
+    				<p>
+    					<input type="submit" value='确认修改' class='edit-sub'/>
+    				</p>
+    			</form>
+	
+</body>
+</html>
