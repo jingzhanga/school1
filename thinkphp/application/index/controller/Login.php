@@ -19,12 +19,15 @@ class Login extends Controller
         $param =input('post.');
         if(empty($param['account'])){
             
-            $this->error('用户名不能为空');
+           $t= $this->error('用户名不能为空');
+           return;
+           var_dump($t);
         }
         
         if(empty($param['pwd'])){
             
             $this->error('密码不能为空');
+            return;
         }
     
 
@@ -34,12 +37,14 @@ class Login extends Controller
        if(empty($has)){
             
            $this->error('用户名密码错误');
+           return;
        }
 
         //验证密码
         if($has['0']['Password'] != $param['pwd']){
             
             $this->error('用户名密码错误');
+            return;
        }
         //var_dump($has);
         // 记录用户登录信息
@@ -65,19 +70,23 @@ class Login extends Controller
             if(empty($param['account'])){
                 
                $this->error('用户名不能为空');
+               return;
             }
             if(empty($param['new'])){
                 
                 $this->error('密码不能为空');
+                return;
             }
 
             if($param['new']!=$param['newed']){
               $this->error('两次密码不正确');
+              return;
             }
             
             if(empty($param['old'])){
                 
                 $this->error('密码不能为空');
+                return;
             }
          
           
@@ -86,12 +95,14 @@ class Login extends Controller
            if(empty($has)){
                 
                $this->error('用户名密码错误');
+               return;
            }
 
             //验证密码
             if($has['0']['Password'] != $param['old']){
                 
                 $this->error('用户名密码错误');
+                return;
            } 
 
 

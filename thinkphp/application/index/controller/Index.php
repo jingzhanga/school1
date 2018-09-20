@@ -13,6 +13,7 @@ class Index extends Base
     {
     		
     		$this->islogin();
+//var_dump($t);
         	return $this ->  fetch();
         
     }
@@ -24,21 +25,9 @@ class Index extends Base
        ******/
      public function one(){
 
-     	$t=Session::get('name');
-            if(empty($t)){
-                 $this->redirect(url('Login/index'));
-            }
-            $where['Job_ID']=array('eq',$t[0]['Job_ID']);
-            $where['Unit']=array('eq',$t[0]['Unit']);
-            $has = Db::table('assess')->where($where)->select();
-
-            foreach ($has as $key=>$arr) {
-                $id[]=$arr['ID'];
-            }
-            $Assess_ID['Assess_ID']=array('in',$id);
-            $list=Db::table('edu_cadre')->where($Assess_ID)->select();
-		//var_dump($Assess_ID);
-//var_dump($id);
+            $t=Session::get('name');
+            $id=$this->islogin();
+            
 //多个身份合成一个数组
 			
 for($i=0;$i<count($id);$i++){
@@ -66,19 +55,8 @@ for($i=0;$i<count($id);$i++){
        教学单位领导班子
        ******/
      public function two(){
-     	$t=Session::get('name');
-    		if(empty($t)){
-    			 $this->redirect(url('Login/index'));
-    		}
-    		$where['Job_ID']=array('eq',$t[0]['Job_ID']);
-    		$where['Unit']=array('eq',$t[0]['Unit']);
-			$has = Db::table('assess')->where($where)->select();
-
-			foreach ($has as $key=>$arr) {
-				$id[]=$arr['ID'];
-			}
-			$Assess_ID['Assess_ID']=array('in',$id);
-			$list=Db::table('edu_cadre')->where($Assess_ID)->select();
+            $t=Session::get('name');
+            $id=$this->islogin();
 		
 			for($i=0;$i<count($id);$i++){
             $result[] = Db::query("select * from edu_unit left join unit on edu_unit.Unit=unit.Unit_ID left join project on edu_unit.Project=project.ID where edu_unit.Assess_ID='$id[$i]'");
@@ -100,20 +78,8 @@ for($i=0;$i<count($id);$i++){
       非教学单位领导干部
        ******/
      public function three(){
-        $t=Session::get('name');
-            if(empty($t)){
-                 $this->redirect(url('Login/index'));
-            }
-            $where['Job_ID']=array('eq',$t[0]['Job_ID']);
-            $where['Unit']=array('eq',$t[0]['Unit']);
-            $has = Db::table('assess')->where($where)->select();
-
-            foreach ($has as $key=>$arr) {
-                $id[]=$arr['ID'];
-            }
-            $Assess_ID['Assess_ID']=array('in',$id);
-            $list=Db::table('edu_cadre')->where($Assess_ID)->select();
-        
+            $t=Session::get('name');
+            $id=$this->islogin();
             for($i=0;$i<count($id);$i++){
             $result[] = Db::query("select * from unedu_cadre left join user on unedu_cadre.Unit=user.Unit and unedu_cadre.Job_ID=user.Job_ID left join project on unedu_cadre.Project=project.ID left join unit on unedu_cadre.Unit=unit.Unit_ID where unedu_cadre.Assess_ID='$id[$i]'");
      }
@@ -140,19 +106,8 @@ for($i=0;$i<count($id);$i++){
        非教学单位领导班子
        ******/
      public function four(){
-        $t=Session::get('name');
-            if(empty($t)){
-                 $this->redirect(url('Login/index'));
-            }
-            $where['Job_ID']=array('eq',$t[0]['Job_ID']);
-            $where['Unit']=array('eq',$t[0]['Unit']);
-            $has = Db::table('assess')->where($where)->select();
-
-            foreach ($has as $key=>$arr) {
-                $id[]=$arr['ID'];
-            }
-            $Assess_ID['Assess_ID']=array('in',$id);
-            $list=Db::table('edu_cadre')->where($Assess_ID)->select();
+            $t=Session::get('name');
+            $id=$this->islogin();
         
             for($i=0;$i<count($id);$i++){
             $result[] = Db::query("select * from unedu_unit left join unit on unedu_unit.Unit=unit.Unit_ID left join project on unedu_unit.Project=project.ID where unedu_unit.Assess_ID='$id[$i]'");

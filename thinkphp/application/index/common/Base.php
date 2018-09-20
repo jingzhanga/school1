@@ -26,7 +26,8 @@ class Base extends Controller{
 			}
 			$Assess_ID['Assess_ID']=array('in',$id);
 			$list=Db::table('edu_cadre')->where($Assess_ID)->select();  
-          
+            
+          return $id;
     }
       
 }
