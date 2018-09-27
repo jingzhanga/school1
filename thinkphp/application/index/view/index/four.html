@@ -19,6 +19,7 @@
   
 
 <form action="{:url('Insert/index')}" method='post' name='editPwd'>
+ <!--
  {volist name='jiaoxue' id='ve'}
 <ul>
     {$i}{$ve.Unit_Name}
@@ -38,8 +39,35 @@
 </ul>
 
 {/volist}
-<input type="submit" value='确认修改' class='edit-sub'/>
-</form>
+-->
+<p>{$unit}</p>
+{volist name='man.Project' id='vb'}
+    <span>{$key}</span>{$man['Use_ID']}
+ <li>
+        <input id="1" type="radio"  name="{$vb}+{$man['Use_ID']}" value="1"/>1分
+        <input id="2" type="radio"  name="{$vb}+{$man['Use_ID']}" value="2"/>2分
+        <input id="3" type="radio"  name="{$vb}+{$man['Use_ID']}" value="3"/>3分
+        <input id="4" type="radio"  name="{$vb}+{$man['Use_ID']}" value="4"/>4分
+        <input id="5" type="radio"  name="{$vb}+{$man['Use_ID']}" value="5"/>5分
+        <input id="6" type="radio"  name="{$vb}+{$man['Use_ID']}" value="6"/>6分
+        <input id="7" type="radio"  name="{$vb}+{$man['Use_ID']}" value="7"/>7分
+        <input id="8" type="radio"  name="{$vb}+{$man['Use_ID']}" value="8"/>8分
+        <input id="9" type="radio"  name="{$vb}+{$man['Use_ID']}" value="9"/>9分
+        <input id="10" type="radio"  name="{$vb}+{$man['Use_ID']}" value="10"/>10分
+    </li>
+{/volist}
 
+<input type="submit" value='确认修改' class='edit-sub'/>
+
+</form>
+<span>当前共{$pagecount}页</span><span>当前第{$pagenow}页</span>
+<a href="{:url('index/four',array('id'=>'1','pagenow'=>$pagenow))}">首页</a>
+<a href="{:url('index/four',array('id'=>'2','pagenow'=>$pagenow))}">上一页</a>
+<a href="{:url('index/four',array('id'=>'3','pagenow'=>$pagenow))}">下一页</a>
+<a href="{:url('index/four',array('id'=>'4','pagenow'=>$pagenow))}">末页</a>
+<form action="{:url('index/four')}" method='post' name='tiaozhuan'>
+<input type="text" name="page" oninput="value=value.replace(/[^\d]/g,'')">
+<input type="submit" value='跳转' />
+    </form>
 </body>
 </html>
