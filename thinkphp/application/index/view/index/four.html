@@ -3,12 +3,21 @@
 <head>
     <meta charset="utf-8">
         <title>打分系统</title> 
+<script>
+            window.onload=function(){
+    {volist name='out' id='vf'}
 
+{volist name='vf' id='vp'}
+  document.getElementsByName('{$key}')[{$vp}].checked='checked';
+
+{/volist}{/volist}
+             
+
+            }
+</script>
 </head>
  
 <body>
-
-	<!--<button action="{:url('index/quit')}" class="dlau1" id='btnSubmit' tyle="border:0px;no-repeat;" >tuichu</button>-->
 <a href="{:url('index/quit')}"">退出</a>
     <a href="{:url('index/one')}"">教学单位处级干部</a>
     <a href="{:url('index/two')}"">教学单位领导班子</a>
@@ -19,43 +28,36 @@
   
 
 <form action="{:url('Insert/index')}" method='post' name='editPwd'>
- <!--
- {volist name='jiaoxue' id='ve'}
-<ul>
-    {$i}{$ve.Unit_Name}
-    <li>{$ve.Project}</li>
-    <li><input id="1" type="radio"  name="{$ve.Unit_Name}+{$ve.Project}" value="    1" />1分
-        <input id="2" type="radio"  name="{$ve.Unit_Name}+{$ve.Project}" value="2"/>2分
-        <input id="3" type="radio"  name="{$ve.Unit_Name}+{$ve.Project}" value="3"/>3分
-        <input id="4" type="radio"  name="{$ve.Unit_Name}+{$ve.Project}" value="4"/>4分
-        <input id="5" type="radio"  name="{$ve.Unit_Name}+{$ve.Project}" value="5"/>5分
-        <input id="6" type="radio"  name="{$ve.Unit_Name}+{$ve.Project}" value="6"/>6分
-        <input id="7" type="radio"  name="{$ve.Unit_Name}+{$ve.Project}" value="7"/>7分
-        <input id="8" type="radio"  name="{$ve.Unit_Name}+{$ve.Project}" value="8"/>8分
-        <input id="9" type="radio"  name="{$ve.Unit_Name}+{$ve.Project}" value="9"/>9分
-        <input id="10" type="radio"  name="{$ve.Unit_Name}+{$ve.Project}" value="10"/>10分
-    </li>
 
-</ul>
-
-{/volist}
--->
-<p>{$unit}</p>
+ <p style="font-size: 26px;">{$unit}</p>
+<table border="1" style="border-collapse:collapse">
 {volist name='man.Project' id='vb'}
-    <span>{$key}</span>{$man['Use_ID']}
- <li>
+  <tr>
+    <td width="300px">{$key}</td>
+    <td>
         <input id="1" type="radio"  name="{$vb}+{$man['Use_ID']}" value="1"/>1分
+    </td><td>
         <input id="2" type="radio"  name="{$vb}+{$man['Use_ID']}" value="2"/>2分
+    </td><td>
         <input id="3" type="radio"  name="{$vb}+{$man['Use_ID']}" value="3"/>3分
+    </td><td>
         <input id="4" type="radio"  name="{$vb}+{$man['Use_ID']}" value="4"/>4分
+    </td><td>
         <input id="5" type="radio"  name="{$vb}+{$man['Use_ID']}" value="5"/>5分
+    </td><td>
         <input id="6" type="radio"  name="{$vb}+{$man['Use_ID']}" value="6"/>6分
+    </td><td>
         <input id="7" type="radio"  name="{$vb}+{$man['Use_ID']}" value="7"/>7分
+    </td><td>
         <input id="8" type="radio"  name="{$vb}+{$man['Use_ID']}" value="8"/>8分
+    </td><td>
         <input id="9" type="radio"  name="{$vb}+{$man['Use_ID']}" value="9"/>9分
+    </td><td>
         <input id="10" type="radio"  name="{$vb}+{$man['Use_ID']}" value="10"/>10分
-    </li>
+    </td>
+    </tr>
 {/volist}
+</table>
 
 <input type="submit" value='确认修改' class='edit-sub'/>
 

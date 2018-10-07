@@ -32,21 +32,24 @@ class Index extends Base
             for($i=0;$i<count($id);$i++){
             		$result[] = Db::query("select * from edu_cadre left join user on edu_cadre.Unit=user.Unit and edu_cadre.Job_ID=user.Job_ID left join project on edu_cadre.Project=project.ID left join unit on edu_cadre.Unit=unit.Unit_ID where edu_cadre.Assess_ID='$id[$i]'");
                  }
-//print_r($result);
+
+                // var_dump($result);
                 $jiaoxue=$this->doresult($result);
 
                 foreach ($jiaoxue as $a => $b) {
-                    $c[$b['Unit_Name']][$b['Name']]['Project'][$b['Project']]=$b['ID'];
+                    $c[$b['Unit_Name']][$b['Name']]['Project'][$b['Project']]=$b['ID'].'+'.$b['Weight'];
                     $c[$b['Unit_Name']][$b['Name']]['Use_ID']=$b['Use_ID'];
                   
                  }
-                // var_dump($c["经管学院"]);
-                 $this->fenye($c,$params);
 
+                $man=$this->fenye($c,$params);
+                foreach ($man as $key => $value) {
+                    $grade[]=$value['Use_ID'];
+                }
+
+                $this->grade($grade);
             // var_dump($c);
                  $this->assign("c", $c);
-                //$this->assign("b", $b);
-
                  $this->assign("jiaoxue", $jiaoxue);    
                  return $this ->  fetch();
         
@@ -65,11 +68,13 @@ class Index extends Base
      }
                 $jiaoxue=$this->doresult($result);
                 foreach ($jiaoxue as $a => $b) {
-                    $c[$b['Unit_Name']]['Project'][$b['Project']]=$b['ID'];
+                    $c[$b['Unit_Name']]['Project'][$b['Project']]=$b['ID'].'+'.$b['Weight'];;
                     $c[$b['Unit_Name']]['Use_ID']=$b['Use_ID'];
                   
                  }
-                $this->fenye($c,$params);
+                $man=$this->fenye($c,$params);
+                $grade[]=$man['Use_ID'];
+                $this->grade($grade);
                 $this->assign("jiaoxue", $jiaoxue);    
                 return $this ->  fetch();
      }
@@ -89,11 +94,16 @@ class Index extends Base
              $jiaoxue=$this->doresult($result);
 
              foreach ($jiaoxue as $a => $b) {
-                $c[$b['Unit_Name']][$b['Name']]['Project'][$b['Project']]=$b['ID'];
+                $c[$b['Unit_Name']][$b['Name']]['Project'][$b['Project']]=$b['ID'].'+'.$b['Weight'];;
                 $c[$b['Unit_Name']][$b['Name']]['Use_ID']=$b['Use_ID'];
         
      }
-                $this->fenye($c,$params);
+                $man=$this->fenye($c,$params);
+                foreach ($man as $key => $value) {
+                    $grade[]=$value['Use_ID'];
+                }
+
+                $this->grade($grade);
                 $this->assign("c", $c); 
                 $this->assign("jiaoxue", $jiaoxue);    
                 return $this ->  fetch();
@@ -113,11 +123,13 @@ class Index extends Base
      }
                 $jiaoxue=$this->doresult($result);
                 foreach ($jiaoxue as $a => $b) {
-                    $c[$b['Unit_Name']]['Project'][$b['Project']]=$b['ID'];
+                    $c[$b['Unit_Name']]['Project'][$b['Project']]=$b['ID'].'+'.$b['Weight'];;
                     $c[$b['Unit_Name']]['Use_ID']=$b['Use_ID'];
                   
                  }
-                $this->fenye($c,$params);
+                $man=$this->fenye($c,$params);
+                $grade[]=$man['Use_ID'];
+                $this->grade($grade);
                 $this->assign("jiaoxue", $jiaoxue);    
                 return $this ->  fetch();
      }

@@ -26,11 +26,12 @@ class Base extends Controller{
 			$has = Db::table('assess')->where($where)->select();
             //var_dump($has);
 			foreach ($has as $key=>$arr) {
-				$id[]=$arr['ID'];
+				$id[]=$arr['Assess_ID'];
 			}
 			$Assess_ID['Assess_ID']=array('in',$id);
 			$list=Db::table('edu_cadre')->where($Assess_ID)->select();  
-            //var_dump($list);
+            //var_dump($list);\
+    //var_dump($id);
           return $id;
     }
 
@@ -92,12 +93,40 @@ class Base extends Controller{
         $t=$pagenow-1;
         $unit=$d[$t];
         $man=$f[$t];
-        //var_dump($man);
         $this->assign("unit", $unit);
         $this->assign("man", $man);
-
         $this->assign("pagecount", $pagecount);
         $this->assign("pagenow", $pagenow);
+        return $man;
+    }
+
+
+
+    public function grade($id){
+      $t=Session::get('name');
+      $dafen  =$t[0]['Use_ID'];
+      foreach ($id as $key) {
+        $result[]=Db::query("select * from grade where Dafen_ID=$dafen and Beidafen_ID=$key");
+      }
+      $result=array_filter($result);
+      //var_dump($result);
+      if(empty($result)){
+        $out[]=array("0"=>"0");
+      }else{
+      foreach ($result as $key => $b) {
+        foreach ($b as $key => $value) {
+          $str=$value['Project'].'+'.$value['Weight'].'+'.$value['Beidafen_ID'];
+        $num=$value['Grade']-1;
+        $out[]=array($str=>$num);
+        //var_dump($out);
+        }
+
+
+        }
+      }
+
+        $this->assign("out", $out);
+      
     }
       
 }
